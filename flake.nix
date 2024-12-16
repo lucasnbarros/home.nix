@@ -86,15 +86,13 @@
   };
 
   outputs =
-    inputs@{
-      self,
-
-      flake-utils,
-      nix-darwin,
-      nixpkgs,
-      pre-commit-hooks,
-      rust-overlay,
-      ...
+    inputs@{ self
+    , flake-utils
+    , nix-darwin
+    , nixpkgs
+    , pre-commit-hooks
+    , rust-overlay
+    , ...
     }:
     let
       ctx = flake-utils.lib.eachDefaultSystem (system: {
@@ -194,6 +192,6 @@
     perSystem
     // {
       darwinConfigurations.drone = buildDarwin "drone";
-      nixosConfigurations.battlecruiser = buildNixos "battlecruiser";
+      nixosConfigurations.terminus = buildNixos "terminus";
     };
 }
