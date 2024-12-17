@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 with pkgs;
 let
@@ -39,30 +38,33 @@ in
         XDG_SESSION_TYPE = "wayland";
       };
 
-      systemPackages = with pkgs; [
-        discord
-        easyeffects
-        element-desktop
-        firefox
-        fractal
-        helvum
-        inkscape
-        obs-studio
-        obsidian
-        qpwgraph
-        telegram-desktop
-        todoist-electron
-        vlc
-        wl-clipboard-rs
-        zed-editor
+      systemPackages =
+        with pkgs;
+        [
+          discord
+          easyeffects
+          element-desktop
+          firefox
+          fractal
+          helvum
+          inkscape
+          obs-studio
+          obsidian
+          simplex-chat-desktop
+          streamlink-twitch-gui-bin
+          telegram-desktop
+          todoist-electron
+          vlc
+          wl-clipboard-rs
+          zed-editor
 
-        # Fonts
-        cantarell-fonts
-        dejavu_fonts
-        noto-fonts
-        source-code-pro
-        source-sans
-      ];
+          # Fonts
+          cantarell-fonts
+          dejavu_fonts
+          noto-fonts
+          source-code-pro
+          source-sans
+        ];
     };
 
     fonts.fontconfig = {
