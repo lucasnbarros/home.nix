@@ -41,6 +41,7 @@ in
       systemPackages =
         with pkgs;
         [
+          alsa-utils
           discord
           easyeffects
           element-desktop
