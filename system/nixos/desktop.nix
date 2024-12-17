@@ -55,6 +55,7 @@ in
           telegram-desktop
           todoist-electron
           vlc
+          vscode
           wl-clipboard-rs
           zed-editor
 
