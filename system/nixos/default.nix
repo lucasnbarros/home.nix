@@ -119,6 +119,8 @@ in
       enableSSHSupport = true;
     };
 
+    programs.nix-ld.enable = true;
+
     security = {
       audit = {
         enable = mkDefault true;
