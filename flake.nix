@@ -2,9 +2,15 @@
   description = "Entrypoint for my user config";
 
   nixConfig = {
-    extra-substituters = [ "https://cfcosta-home.cachix.org/" ];
+    extra-substituters = [
+      "https://cfcosta-home.cachix.org/"
+      "https://cache.nixos.org"
+      "https://cache.iog.io"
+    ];
     extra-trusted-public-keys = [
       "cfcosta-home.cachix.org-1:Ly4J9QkKf/WGbnap33TG0o5mG5Sa/rcKQczLbH6G66I="
+      "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     ];
   };
 
