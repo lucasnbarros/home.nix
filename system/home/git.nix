@@ -7,7 +7,7 @@ in
     git = {
       enable = true;
 
-      userName = config.dusk.name;
+      userName = config.dusk.accounts.github;
       userEmail = config.dusk.emails.primary;
 
       delta = {

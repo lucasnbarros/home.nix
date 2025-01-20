@@ -49,12 +49,12 @@
     boot.kernelModules = [ "kvm-amd" ];
 
     fileSystems."/" = {
-      device = "/dev/disk/by-uuid/3db177d8-c700-4177-96e9-36145afc4d8c";
+      device = "/dev/disk/by-uuid/636a0fd5-38c7-4953-aabb-8285e568e42c";
       fsType = "ext4";
     };
 
     fileSystems."/boot" = {
-      device = "/dev/disk/by-uuid/5877-C82A";
+      device = "/dev/disk/by-uuid/72D3-11C2";
       fsType = "vfat";
       options = [
         "fmask=0077"
@@ -62,7 +62,7 @@
       ];
     };
 
-    swapDevices = [ { device = "/dev/disk/by-uuid/43837f7a-8272-4178-955e-d93b887c976e"; } ];
+    swapDevices = [ { device = "/dev/disk/by-uuid/bc5301c5-fd5c-4d0c-8b0b-2ef35faf5a2d"; } ];
 
     # Workaround fix for nm-online-service from stalling on Wireguard interface.
     # https://github.com/NixOS/nixpkgs/issues/180175
