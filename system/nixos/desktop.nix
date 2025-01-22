@@ -57,6 +57,7 @@ in
           streamlink-twitch-gui-bin
           telegram-desktop
           todoist-electron
+          ventoy
           vlc
           vscode
           wl-clipboard-rs
