@@ -17,7 +17,7 @@ in
   imports = [
     ./gaming
     ./gnome
-    ./hyprland
+    # ./hyprland
   ];
 
   config = mkIf cfg.enable {
