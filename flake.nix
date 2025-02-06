@@ -36,6 +36,14 @@
       };
     };
 
+    nuscht-search = {
+      url = "github:NuschtOS/search";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
+
     catppuccin = {
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -45,6 +53,7 @@
       url = "github:hercules-ci/gitignore.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     glimpse = {
       url = "github:seatedro/glimpse";
       inputs = {
@@ -53,10 +62,12 @@
         flake-utils.follows = "flake-utils";
       };
     };
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     neovim = {
       url = "github:cfcosta/neovim.nix";
       inputs = {
@@ -68,11 +79,14 @@
         treefmt-nix.follows = "treefmt-nix";
       };
     };
+
     nix-darwin = {
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
       inputs = {
@@ -81,10 +95,12 @@
         flake-compat.follows = "flake-compat";
       };
     };
+
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -104,12 +120,10 @@
       ctx = flake-utils.lib.eachDefaultSystem (system: {
         pkgs = import nixpkgs {
           inherit system;
-
           overlays = [
             (import rust-overlay)
             (import ./packages inputs)
           ];
-
           config.allowUnfree = true;
         };
       });
@@ -126,13 +140,11 @@
         flavor: system: name:
         builders.${flavor} {
           pkgs = buildPkgs system;
-
           modules = [
             ./system
             ./system/${flavor}
             ./machines/${name}.nix
           ];
-
           specialArgs = { inherit inputs flavor dusk-lib; };
         };
       buildNixos = buildSystem "nixos" "x86_64-linux";
@@ -142,17 +154,13 @@
         system:
         let
           pkgs = buildPkgs system;
-
           inherit (pkgs) mkShell;
-
           pre-commit-check = pre-commit-hooks.lib.${system}.run {
             src = ./.;
-
             hooks = {
               deadnix.enable = true;
               statix.enable = true;
               shellcheck.enable = true;
-
               treefmt = {
                 enable = true;
                 package = pkgs.dusk-treefmt;
@@ -177,20 +185,16 @@
           devShells.default = mkShell {
             inherit (pre-commit-check) shellHook;
             name = "home";
-
             packages = with pkgs; [
               agenix
               dusk-treefmt
-
               (writeShellScriptBin "dusk-apply" "nix run $(pwd)#dusk-apply")
             ];
           };
 
           packages = {
             inherit (pkgs) dusk-apply dusk-system-verify;
-
-            battlecruiser = systemTarget "battlecruiser" "nixos";
-            drone = systemTarget "drone" "darwin";
+            terminus = systemTarget "terminus" "nixos";
           };
         }
       );
@@ -199,5 +203,6 @@
     // {
       darwinConfigurations.drone = buildDarwin "drone";
       nixosConfigurations.terminus = buildNixos "terminus";
+
     };
 }
