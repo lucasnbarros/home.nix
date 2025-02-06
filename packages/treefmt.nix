@@ -1,8 +1,7 @@
-{
-  inputs,
-  pkgs,
-  writeTextFile,
-  ...
+{ inputs
+, pkgs
+, writeTextFile
+, ...
 }:
 let
   styluaTOML = writeTextFile {
@@ -55,12 +54,12 @@ let
 
       rustfmt = {
         enable = true;
-
         package = pkgs.rust-bin.nightly.latest.default.overrideAttrs (oldAttrs: {
           meta = oldAttrs.meta // {
             mainProgram = "rustfmt";
           };
         });
+
       };
     };
   };
