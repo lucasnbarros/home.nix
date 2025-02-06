@@ -96,24 +96,21 @@ in
     security.rtkit.enable = true;
 
     services = {
+
       pulseaudio.enable = mkForce false;
 
       pipewire = {
         enable = true;
         socketActivation = true;
-
         alsa = {
           enable = true;
           support32Bit = true;
         };
-
         jack.enable = true;
         pulse.enable = true;
       };
-
       syncthing = {
         enable = true;
-
         user = username;
         dataDir = "${home}/Sync";
       };
