@@ -48,8 +48,10 @@ in
 
   config = mkIf cfg.enable {
 
-    systemd.services."getty@tty1".enable = false;
-    systemd.services."autovt@tty1".enable = false;
+    systemd.services = {
+      "getty@tty1".enable = false;
+      "autovt@tty1".enable = false;
+    };
 
     environment = {
       sessionVariables = {
@@ -75,10 +77,11 @@ in
     services.xserver.displayManager.gdm = {
       enable = true;
       autoSuspend = false;
-      autoLogin = {
-        enable = true;
-        user = config.dusk.username;
-      };
+    };
+
+    services.displayManager.autoLogin = {
+      enable = true;
+      user = config.dusk.username;
     };
 
     xdg.portal = {
