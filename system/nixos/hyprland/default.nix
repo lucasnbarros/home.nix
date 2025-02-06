@@ -47,6 +47,10 @@ in
   imports = [ ./sunshine.nix ];
 
   config = mkIf cfg.enable {
+
+    systemd.services."getty@tty1".enable = false;
+    systemd.services."autovt@tty1".enable = false;
+
     environment = {
       sessionVariables = {
         XDG_CURRENT_DESKTOP = "Hyprland";
@@ -71,6 +75,10 @@ in
     services.xserver.displayManager.gdm = {
       enable = true;
       autoSuspend = false;
+      autoLogin = {
+        enable = true;
+        user = config.dusk.username;
+      };
     };
 
     xdg.portal = {
