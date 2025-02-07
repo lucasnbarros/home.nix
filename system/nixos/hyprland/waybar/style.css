@@ -35,3 +35,18 @@ window#waybar {
   background-color: shade(@base, 0.9);
   border: 2px solid alpha(@crust, 0.3);
 }
+
+#workspaces button {
+  padding: 0 5px;
+  background-color: transparent;
+  color: #888888; /* Dim color for inactive workspaces */
+}
+
+#workspaces button.active {
+  color: #ffffff; /* Bright color for active workspace */
+  border-bottom: 2px solid #ffffff; /* Underline indicator */
+}
+
+#workspaces button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}

@@ -12,7 +12,10 @@ in
         position = "top";
         height = 30;
         spacing = 4;
-        modules-left = [ "hyprland/workspaces" ];
+        modules-left = [
+          "custom/launcher"
+          "hyprland/workspaces"
+        ];
         modules-center = [ "clock" ];
         modules-right = [
           "pulseaudio"
@@ -23,10 +26,21 @@ in
           "tray"
         ];
 
+        "custom/launcher" = {
+          format = "Apps";
+          on-click = "rofi -show drun";
+          tooltip = false;
+        };
+
         "hyprland/workspaces" = {
-          format = "{icon}";
-          on-click = "activate";
-          sort-by-number = true;
+          format = "{name}";
+          active-only = false;
+          persistent-workspaces = {
+            "*" = 5;
+          };
+          on-scroll-up = "hyprctl dispatch workspace e+1";
+          on-scroll-down = "hyprctl dispatch workspace e-1";
+          show-special = false;
         };
 
         "clock" = {
