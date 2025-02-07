@@ -16,7 +16,7 @@ in
 {
   imports = [
     ./gaming
-    ./gnome
+    # ./gnome
     ./hyprland
   ];
 
