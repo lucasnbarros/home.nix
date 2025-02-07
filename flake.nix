@@ -126,7 +126,6 @@
             (import ./packages inputs)
           ];
           config.allowUnfree = true;
-          config.allowBroken = true;
         };
       });
 

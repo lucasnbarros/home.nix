@@ -144,11 +144,13 @@ in
     shell.program = "${pkgs.bashInteractive}/bin/bash";
     working_directory = "current_project_directory";
   };
+
   theme = {
-    mode = "system";
+    mode = "dark";
     light = "Catppuccin Latte";
     dark = "Catppuccin Mocha";
   };
+
   toolbar = {
     breadcrumbs = false;
     quick_actions = false;
