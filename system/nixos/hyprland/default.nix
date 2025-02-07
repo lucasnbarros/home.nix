@@ -47,12 +47,6 @@ in
   imports = [ ./sunshine.nix ];
 
   config = mkIf cfg.enable {
-
-    systemd.services = {
-      "getty@tty1".enable = false;
-      "autovt@tty1".enable = false;
-    };
-
     environment = {
       sessionVariables = {
         XDG_CURRENT_DESKTOP = "Hyprland";
@@ -66,22 +60,53 @@ in
       ];
     };
 
-    programs.hyprland = {
-      enable = true;
-      withUWSM = true;
-      xwayland.enable = true;
+    programs = {
+      dconf.enable = true;
+
+      hyprland = {
+        enable = true;
+        withUWSM = true;
+        xwayland.enable = true;
+      };
     };
 
     security.pam.services.hyprlock = { };
 
-    services.xserver.displayManager.gdm = {
-      enable = true;
-      autoSuspend = false;
+    services = {
+      xserver = {
+        enable = true;
+        displayManager.gdm = {
+          enable = true;
+          autoSuspend = false;
+        };
+        desktopManager.gnome = {
+          enable = true;
+          extraGSettingsOverrides = ''
+            [org.gnome.desktop.session]
+            idle-delay=uint32 0
+            [org.gnome.settings-daemon.plugins.power]
+            sleep-inactive-ac-type='nothing'
+            sleep-inactive-battery-type='nothing'
+            [org.gnome.desktop.screensaver]
+            lock-enabled=false
+            [org.gnome.settings-daemon.plugins.power]
+            power-button-action='nothing'
+            [org.gnome.desktop.interface]
+            color-scheme='prefer-dark'
+            gtk-theme='palenight'
+          '';
+        };
+      };
+
+      displayManager.autoLogin = {
+        enable = true;
+        user = config.dusk.username;
+      };
     };
 
-    services.displayManager.autoLogin = {
-      enable = true;
-      user = config.dusk.username;
+    systemd.services = {
+      "getty@tty1".enable = false;
+      "autovt@tty1".enable = false;
     };
 
     xdg.portal = {
@@ -106,7 +131,27 @@ in
         ./waybar
       ];
 
-      gtk.enable = true;
+      gtk = {
+        enable = true;
+        iconTheme = {
+          name = "Papirus-Dark";
+          package = pkgs.papirus-icon-theme;
+        };
+        theme = {
+          name = "palenight";
+          package = pkgs.palenight-theme;
+        };
+        cursorTheme = {
+          name = "Adwaita";
+          package = pkgs.adwaita-icon-theme;
+        };
+        gtk3.extraConfig = {
+          gtk-application-prefer-dark-theme = true;
+        };
+        gtk4.extraConfig = {
+          gtk-application-prefer-dark-theme = true;
+        };
+      };
 
       home.pointerCursor = {
         name = "Adwaita";
