@@ -62,6 +62,9 @@ in
           vscode
           wl-clipboard-rs
           zed-editor
+          nixd
+          nil
+          nixpkgs-fmt
 
           # Fonts
           cantarell-fonts

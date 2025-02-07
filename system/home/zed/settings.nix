@@ -9,29 +9,22 @@ in
     ui_font_family
     ui_font_size
     ;
-
   assistant = {
     version = "2";
-
     default_model = {
       provider = "anthropic";
       model = "claude-3-5-sonnet-latest";
     };
   };
-
   auto_update = false;
-
   buffer_line_height = {
     custom = 1.4;
   };
-
   calls = {
     mute_on_join = false;
     share_on_join = false;
   };
-
   load_direnv = "shell_hook";
-
   file_scan_exclusions = [
     "**/.direnv"
     "**/.git"
@@ -43,14 +36,11 @@ in
     "**/.classpath"
     "**/.settings"
   ];
-
   file_types = {
     JSON = [ "flake.lock" ];
     TOML = [ "Cargo.lock" ];
   };
-
   git.inline_blame.enabled = false;
-
   inline_completions.disabled_globs = [
     "*.pyc"
     ".DS_Store"
@@ -72,8 +62,30 @@ in
     "result-bin"
     "target"
   ];
-
   lsp = {
+    # Add nixd configuration
+    nixd = {
+      enable = true;
+      initialization_options = {
+        eval = {
+          depth = 10;
+          workers = 5;
+        };
+        formatting = {
+          command = [ "nixpkgs-fmt" ];
+        };
+      };
+    };
+    # Add nil configuration
+    nil = {
+      enable = true;
+      initialization_options = {
+        formatting = {
+          command = [ "nixpkgs-fmt" ];
+        };
+      };
+    };
+    # Your existing rust-analyzer configuration
     rust-analyzer = {
       initialization_options = {
         cargo = {
@@ -101,13 +113,10 @@ in
       };
     };
   };
-
   outline_panel = {
     button = false;
   };
-
   preferred_line_length = 102;
-
   private_files = [
     "**/.env*"
     "**/*.pem"
@@ -118,20 +127,15 @@ in
     "**/.direnv"
     "**/target"
   ];
-
   project_panel.scrollbar.show = "never";
   restore_on_startup = "none";
   show_whitespaces = "boundary";
   soft_wrap = "preferred_line_length";
-
-  # vim style tabs set false
   tab_bar.show = true;
-
   telemetry = {
     diagnostics = false;
     metrics = false;
   };
-
   terminal = {
     detect_venv = "off";
     font_size = 15;
@@ -140,23 +144,19 @@ in
     shell.program = "${pkgs.bashInteractive}/bin/bash";
     working_directory = "current_project_directory";
   };
-
   theme = {
     mode = "system";
     light = "Catppuccin Latte";
     dark = "Catppuccin Mocha";
   };
-
   toolbar = {
     breadcrumbs = false;
     quick_actions = false;
     selections_menu = false;
   };
-
   vim = {
     use_system_clipboard = "never";
     use_smartcase_find = true;
   };
-
   vim_mode = false;
 }
