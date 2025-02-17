@@ -1,10 +1,9 @@
-{
-  config,
-  flavor,
-  inputs,
-  lib,
-  pkgs,
-  ...
+{ config
+, flavor
+, inputs
+, lib
+, pkgs
+, ...
 }:
 let
   inherit (config.dusk.system) hostname;
