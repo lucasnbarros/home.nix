@@ -185,12 +185,16 @@
             ];
           };
 
-          packages = {
-            inherit (pkgs) dusk-apply dusk-system-verify;
-
-            terminus = systemTarget "terminus" "nixos";
-            drone = systemTarget "drone" "darwin";
-          };
+          packages =
+            let
+              commonPackages = { inherit (pkgs) dusk-apply dusk-system-verify; };
+            in
+            if system == "x86_64-linux" then
+              commonPackages // { terminus = systemTarget "terminus" "nixos"; }
+            else if system == "aarch64-darwin" then
+              commonPackages // { drone = systemTarget "drone" "darwin"; }
+            else
+              commonPackages;
         }
       );
     in
