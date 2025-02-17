@@ -187,8 +187,9 @@
 
           packages = {
             inherit (pkgs) dusk-apply dusk-system-verify;
+
             terminus = systemTarget "terminus" "nixos";
-            default = systemTarget "terminus" "nixos";
+            drone = systemTarget "drone" "darwin";
           };
         }
       );
@@ -197,6 +198,5 @@
     // {
       darwinConfigurations.drone = buildDarwin "drone";
       nixosConfigurations.terminus = buildNixos "terminus";
-
     };
 }
