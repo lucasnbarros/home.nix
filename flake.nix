@@ -37,14 +37,6 @@
       };
     };
 
-    nuscht-search = {
-      url = "github:NuschtOS/search";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
-
     catppuccin = {
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
