@@ -16,7 +16,7 @@ in
 {
   imports = [
     inputs.agenix.homeManagerModules.default
-    inputs.catppuccin.homeManagerModules.catppuccin
+    inputs.catppuccin.homeModules.catppuccin
 
     ./git.nix
     ./jujutsu.nix
