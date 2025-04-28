@@ -108,8 +108,8 @@ in
           jc = "jj commit";
           jd = "jj diff";
           jl = "jj log --no-pager --ignore-working-copy";
-          ll = "lsd -l -A";
-          ls = "lsd -l";
+          ll = lib.mkForce "lsd -l -A";
+          ls = lib.mkForce "lsd -l";
           vi = "nvim";
           vim = "nvim";
         };
@@ -251,7 +251,7 @@ in
       enable = true;
 
       configFile."pgcli/config".text = ''
-        max_field_width = 
+        max_field_width =
         less_chatty = True
       '';
     };
